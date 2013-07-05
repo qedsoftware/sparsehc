@@ -1,33 +1,25 @@
-SparseHC: a memory-efficient ad accurate online hierarchical clustering algorithm
+sparsehc: Memory-efficient hierarchical clustering
 
 Compile:
 
-	make
+	From Eclipse: Add the whole downloaded project to workspace and build
+	From Linux terminal: Go to the Release folder and type "make"
+	The executable file is Release/sparsehc
 
-Run:
-
-	To cluster pre-computed, pre-sorted distance matrix:
-
-	./SparseHC --mat=<path_to_input_matrix> --tree=<path_to_output_tree>
-	--linkage=<linkage_type> --size=<number_of_data_points> 
-	
-	Example: ./SparseHC --mat=data/matrix.dat --tree=data/average_tree.txt
-	--linkage=average --size=10000
-
-	To randomly generate an Euclidean distance matrix and cluster that matrix:
-
-	./SparseHC --generate --mat=<path_to_input_matrix> --tree=<path_to_output_tree>
-	--linkage=<linkage_type> --size=<number_of_data_points> --dim=<dimension_of_each_point>
-	--cutoff=<distance_cutoff_for_partial_matrices>
-	
-	Example: ./SparseHC --mat=data/matrix.dat --tree=data/average_tree.txt
-	--linkage=average --size=10000 --dim=3 --cutoff=0.4
+Command:
+		
+	./sparsehc --matrix=<input_path> --tree=<output_path> --size=<number_of_data_points>
+	--threshold=<distance_threshold> --linkage=<linkage_type>
 
 Parameters:
+	
+	--matrix=%s	Path to the input matrix file <required>
+	--tree=%s 	Path to the output tree file <required>
+	--size=%u	Number of data points <required>
+	--dim=%u	Dimension of each point <required>
+	--threshold=%f	The maximum distance value in the input distance matrix <required>
+	--linkage=%s	The linkage type: average, complete or single <required>	
+		
+Example: 
 
-	--mat: the pairwise distance matrix
-	--tree: the clustering outcome
-	--linkage: clusterine method - single, complete, or average
-	--size: the number of data points - value: positive integer
-	--dim: the dimension of each data point - value: positive integer
-	--cutoff: the distance cutoff for creating partial matrice - value: 0.0 to 1.0
+	./sparsehc --matrix=/Data/sparse_matrix.dat --tree=/Data/average_tree.txt --size=100 --threshold=0.5 --linkage=average

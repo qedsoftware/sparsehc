@@ -28,7 +28,6 @@ Matrix::Matrix(uint n, float t) {
 
 void Matrix::stats() {
 
-	fprintf(stderr, "\n==== Distance matrix statistics ====\n");
 	fprintf(stderr, "Number of elements: %zu\n", numElements);
 	fprintf(stderr, "Threshold: %f\n", threshold);
 	fprintf(stderr, "Number of points: %u\n", numPoints);

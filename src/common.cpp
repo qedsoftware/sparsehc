@@ -15,8 +15,7 @@ void Timer::tic() {
 
 void Timer::toc() {
 	gettimeofday(&end_, NULL);
-	lapse_ = end_.tv_sec - start_.tv_sec
-			+ 1e-6 * (end_.tv_usec - start_.tv_usec);
+	lapse_ = end_.tv_sec - start_.tv_sec + 1e-6 * (end_.tv_usec - start_.tv_usec);
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -63,27 +62,14 @@ void printProfilerStats() {
 //----------------------------------------------------------------------------------------------------
 
 void printUsage() {
-	cout << "Commands: " << endl;
-	cout << "\tSparseHC" << endl;
-	cout << "Options: " << endl;
-	cout
-			<< "\t--num-threads=%u\tNumber of parallel threads, auto-detect if not specified"
-			<< endl;
-	cout
-			<< "\t--threshold=%f\tMaximum value in the sparse distance matrix. [default=1.0f]"
-			<< endl;
-	cout
-			<< "\t--linkage=%s\tLinkage for hierarchical clustering (average, complete, or single). [default=average]"
-			<< endl;
-	cout
-			<< "\t--read-file=%s\tInput file in fasta or fastq format, switch to generate mode if not specified"
-			<< endl;
-	cout << "\t--k=%u\tk value for computing k-mer distance. [default=6]"
-			<< endl;
-	cout << "\t--size=%u\tNumber of generated vectors. [default=10]" << endl;
-	cout << "\t--dim=%u\tDimension of each vector. [default=3]" << endl;
-	cout << "\t--verbose=%s\tPrint intermediate results. [default=false]"
-			<< endl;
+	cerr << "Commands: " << endl;
+	cerr << "\tSparseHC" << endl;
+	cerr << "Options: " << endl;
+	cerr << "\t--matrix=%s\tThe path to the input matrix file." << endl;
+	cerr << "\t--tree=%s\tThe path to the output tree file." << endl;
+	cerr << "\t--size=%u\tNumber of data points" << endl;
+	cerr << "\t--threshold=%f\tMaximum value in the input distance matrix." << endl;
+	cerr << "\t--linkage=%s\tLinkage type: average, complete, or single. " << endl;
 }
 
 int extractOptions(const char* format, void* value, int argc, char** argv) {
@@ -94,22 +80,4 @@ int extractOptions(const char* format, void* value, int argc, char** argv) {
 	return 0;
 }
 
-string sizeOnDisk(size_t sizeInBytes) {
-	char buf[BUF_SIZE];
-	float size = (float) sizeInBytes / 1024;
-	if (size < 1024) {
-		sprintf(buf, "%f KB", size);
-		return string(buf);
-	}
-
-	size /= 1024;
-	if (size < 1024) {
-		sprintf(buf, "%f MB", size);
-		return string(buf);
-	}
-
-	size /= 1024;
-	fprintf(stderr, buf, "%f GB", size);
-	return string(buf);
-}
 

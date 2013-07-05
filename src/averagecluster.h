@@ -80,8 +80,7 @@ struct AverageCluster: public Cluster {
 	void clusterMatrix(InMatrix * mat);
 
 	// current class methods
-	void merge(AverageVertex * v1, AverageVertex * v2, AverageVertex* v,
-			float max);
+	void merge(AverageVertex * v1, AverageVertex * v2, AverageVertex* v, float max);
 
 	void absorb(Element* e);
 	void absorb(uint row, uint col, float value);

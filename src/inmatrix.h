@@ -9,7 +9,6 @@
 #define INMATRIX_H_
 
 #include "matrix.h"
-#include "point.h"
 #include "common.h"
 using namespace std;
 

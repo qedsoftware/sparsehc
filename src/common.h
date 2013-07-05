@@ -36,11 +36,6 @@ using namespace std;
 #define MIN(x,y) ((x) < (y) ? (x) : (y))
 #define MAX(x,y) ((x) > (y) ? (x) : (y))
 
-#define DEBUG 0  // if 2: include reads, tuples and vectors
-#define TEMP_PATH "/media/kristin/DATA/data"
-#define STORE_PATH "/media/kristin/Movies/data" // slow
-
-
 #define BUF_SIZE 4096
 //----------------------------------------------------------------------------------------------------
 
@@ -82,7 +77,5 @@ void printProfilerStats();
 void printUsage();
 
 int extractOptions(const char *format, void *value, int argc, char **argv);
-
-string sizeOnDisk(size_t sizeInBytes);
 
 #endif /* COMMON_H_ */

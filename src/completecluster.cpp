@@ -43,8 +43,7 @@ Vertex* CompleteCluster::createVertex(uint id) {
 }
 
 // merge two clusters, v1->id > v2->id
-void CompleteCluster::merge(CompleteVertex * v1, CompleteVertex * v2,
-		CompleteVertex *v) {
+void CompleteCluster::merge(CompleteVertex * v1, CompleteVertex * v2, CompleteVertex *v) {
 
 	// set child vertices for the parent TreeNode
 	v->left = v1;
@@ -157,10 +156,8 @@ void CompleteCluster::clusterMatrix(InMatrix * mat) {
 			maxEdges *= 1.1f;
 	}
 
-	fprintf(stderr,
-			"Finished! M = %u. linear ratio: %.2f. quadratic ratio: %zu\n",
-			maxEdges, (double) maxEdges / mat->numPoints,
-			mat->numElements / maxEdges);
+	fprintf(stderr, "Finished! M = %u. linear ratio: %.2f. quadratic ratio: %zu\n", maxEdges,
+			(double) maxEdges / mat->numPoints, mat->numElements / maxEdges);
 	printf("%u\t", maxEdges);
 }
 

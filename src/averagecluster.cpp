@@ -71,18 +71,15 @@ void AverageVertex::printEdges() {
 		return;
 
 	AverageEdgeMapIt it;
-	fprintf(stderr, "Vertex %u has %zu outcoming edges:", id + 1,
-			outEdges.size());
+	fprintf(stderr, "Vertex %u has %zu outcoming edges:", id + 1, outEdges.size());
 	for (it = outEdges.begin(); it != outEdges.end(); ++it)
-		fprintf(stderr, "(%u, %f, %u) ", it->first->id + 1, it->second.weight,
-				it->second.width);
+		fprintf(stderr, "(%u, %f, %u) ", it->first->id + 1, it->second.weight, it->second.width);
 	fprintf(stderr, "\n");
 }
 
 void AverageVertex::printCandidate() {
 	if (candidate)
-		fprintf(stderr, "Candidate: %u %f %f\n", candidate->id + 1, exactDist,
-				inexactDist);
+		fprintf(stderr, "Candidate: %u %f %f\n", candidate->id + 1, exactDist, inexactDist);
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -131,8 +128,7 @@ void AverageCluster::updateAllMin(float max) {
 }
 
 // merge two clusters
-void AverageCluster::merge(AverageVertex * v1, AverageVertex * v2,
-		AverageVertex *v, float max) {
+void AverageCluster::merge(AverageVertex * v1, AverageVertex * v2, AverageVertex *v, float max) {
 	// set child vertices of the new vertex
 	v->left = v1;
 	v->right = v2;
@@ -243,8 +239,7 @@ void AverageCluster::absorb(uint row, uint col, float value) {
 	totalEdges += (weight == 1);
 }
 
-bool AverageCluster::getCandidate(float &minInexact, float &minExact,
-		AverageVertex* &vertex) {
+bool AverageCluster::getCandidate(float &minInexact, float &minExact, AverageVertex* &vertex) {
 	minInexact = minExact = 1.0f;
 	AverageVertex *v;
 	for (uint i = 0; i < vertices.size(); ++i) {
@@ -259,8 +254,7 @@ bool AverageCluster::getCandidate(float &minInexact, float &minExact,
 		}
 	}
 
-	return (minExact < 1.0f)
-			&& (minExact < minInexact || fabsf(minExact - minInexact) < EPSILON);
+	return (minExact < 1.0f) && (minExact < minInexact || fabsf(minExact - minInexact) < EPSILON);
 }
 
 void AverageCluster::clusterMatrix(InMatrix * mat) {
@@ -319,10 +313,7 @@ void AverageCluster::clusterMatrix(InMatrix * mat) {
 #endif
 	}
 
-	fprintf(stderr,
-			"Finished! M = %u. linear ratio: %.2f. quadratic ratio: %zu\n",
-			maxEdges, (double) maxEdges / mat->numPoints,
-			mat->numElements / maxEdges);
-	printf("%u\t", maxEdges);
+	fprintf(stderr, "Finished! number of edges = %u. linear ratio: %.2f. quadratic ratio: %zu\n", maxEdges,
+			(double) maxEdges / mat->numPoints, mat->numElements / maxEdges);
 }
 

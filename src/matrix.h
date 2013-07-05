@@ -61,7 +61,6 @@ struct Element {
 
 struct Matrix {
 
-
 	vector<Element*> elements;
 
 	size_t numElements;
