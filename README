@@ -23,3 +23,10 @@ Parameters:
 Example: 
 
 	./sparsehc --matrix=/Data/sparse_matrix.dat --tree=/Data/average_tree.txt --size=100 --threshold=0.5 --linkage=average
+	
+Data: 
+
+	To randomly generate pairwise Euclidean distance matrices of different sizes and dimensions:
+	https://bitbucket.org/ngthuydiem/simulate
+	
+		
