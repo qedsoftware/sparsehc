@@ -34,34 +34,36 @@ int main(int argc, char **argv) {
 
 	if (!extractOptions("--matrix=%s", matFileName, argc, argv))
 		EXIT_MSG("The path to input matrix file is required!");
-	fprintf(stderr, "Input matrix: %s\n", matFileName);
+	printf("Input matrix: %s\n", matFileName);
 
 	if (!extractOptions("--tree=%s", treeFileName, argc, argv))
 		EXIT_MSG("The path to output tree file is required!");
-	fprintf(stderr, "Output tree: %s\n", treeFileName);
+	printf("Output tree: %s\n", treeFileName);
 
 	if (!extractOptions("--size=%u", &numPoints, argc, argv))
 		EXIT_MSG("The number of data points is required!");
-	fprintf(stderr, "Number of data points: %u\n", numPoints);
+	printf("Data points: %u\n", numPoints);
 
 	if (!extractOptions("--threshold=%f", &threshold, argc, argv))
 		EXIT_MSG("The distance threshold of the input matrix is required!");
-	fprintf(stderr, "Distance threshold: %f\n", threshold);
+	printf("Threshold: %f\n", threshold);
 
 	char buf[BUF_SIZE];
 	if (extractOptions("--linkage=%s", buf, argc, argv)) {
 		if (strcmp(buf, "average") == 0) {
 			linkage = 0;
-			fprintf(stderr, "Linkage: average\n");
+			printf("Linkage: average\n");
 		} else if (strcmp(buf, "complete") == 0) {
 			linkage = 1;
-			fprintf(stderr, "Linkage: complete\n");
+			printf("Linkage: complete\n");
 		} else if (strcmp(buf, "single") == 0) {
 			linkage = 2;
-			fprintf(stderr, "Linkage: single\n");
+			printf("Linkage: single\n");
+		} else if (strcmp(buf, "weighted") == 0) {
+			linkage = 3;
+			printf("Linkage: weighted\n");
 		} else
-			EXIT_MSG(
-					"Invalid linkage option! SparseHC only supports average-linkage, complete-linkage and single-linkage.");
+			EXIT_MSG( "Invalid linkage option! ");
 	}
 	initProfiler(1, "cluster");
 
@@ -79,6 +81,8 @@ int main(int argc, char **argv) {
 		cluster = new CompleteCluster(numPoints, treeFileName);
 	else if (linkage == 2)
 		cluster = new SingleCluster(numPoints, treeFileName);
+	else if (linkage == 3)
+		cluster = new AverageCluster(numPoints, treeFileName);
 
 	cluster->createLeaves();
 	PROFILE("cluster", cluster->clusterMatrix(inMat));

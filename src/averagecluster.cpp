@@ -26,7 +26,7 @@ float AverageVertex::computeDist(AverageVertex* v, float max, float tempMax) {
 		missing = maxWidth - width;
 
 		if (missing == 0) {
-			dist = (weight + max * missing) / maxWidth;
+			dist = weight / maxWidth;
 			if (dist < exactDist) {
 				exactDist = dist;
 				candidate = v;

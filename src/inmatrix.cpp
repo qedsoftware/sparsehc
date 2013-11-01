@@ -11,7 +11,7 @@ InMatrix::InMatrix(const char* filename, uint numPoints, float threshold) :
 		Matrix(numPoints, threshold) {
 	file = fopen(filename, "rb");
 	if (!file)
-		EXIT_MSG(filename);
+		EXIT_MSG("Cannot open input file!");
 
 	// get length of file:
 	pos = 0;
